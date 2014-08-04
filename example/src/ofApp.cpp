@@ -23,9 +23,9 @@ void ofApp::keyPressed(int key){
 		// wait 3 seconds before sending the shutdown command
 		shutdown.setDelay(3);
 		// shutdown command: shutdown in 1 minute (to let OF close well)
-		shutdown.setParams("-h +1");
+		shutdown.setParams("-h +5");
 		// set admin password if user is not admin
-//		shutdown.setUserIsAdmin(false, "yourPassword");
+		shutdown.setUserIsAdmin(false, "show");
 		// close OF before shutting dowmn
 		shutdown.exitOFAfterShutdownCommand(true);
 		// execute

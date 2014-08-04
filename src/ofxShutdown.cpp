@@ -45,7 +45,7 @@ void ofxShutdown::update(ofEventArgs &e){
 		countdown = delay - elapsedTime;
 		
 		if (countdown < 0 && !bRestarting){
-			ofLogNotice("Shutting down computer!");
+			ofLogNotice("Shutting down computer...");
 			shutDown();
 			bRestarting = true;
 		}
@@ -68,15 +68,19 @@ void ofxShutdown::shutDown(){
 
 	if (isAdmin) {
 		// if user is admin
-		ofSystem("shutdown "+shutdownParams);
-		ofLogNotice(" ofxShutdown::shutDown()")<<"shutdown";
+		ofLogNotice("ofxShutdown::shutDown()")<<"shutdown, user is admin";
+		ofSystem("shutdown "+shutdownParams)+" &";
 	}else{
 		// if user is not admin, set admin passw.
-		ofSystem("echo "+password+" | sudo -S shutdown "+ shutdownParams+" &");
-		ofLogNotice(" ofxShutdown::shutDown()")<<"sudo -S shutdown "+ shutdownParams+" &";
+		ofLogNotice("ofxShutdown::shutDown()")<<"shutdown, user is NOT admin";
+		ofSystem("echo "+password+" &| sudo -S shutdown "+ shutdownParams);
+		ofLogNotice("ofxShutdown::shutDown()")<<"sudo -S shutdown "+ shutdownParams;
+		
+		//echo show | sudo -S shutdown -h +400 &
 	}
 	
 	if (bexitAfterCommand){
+		ofLogNotice("ofxShutdown::shutDown()")<<"killing app... ";
 		ofKillApp("iWall");
 	}
 }
