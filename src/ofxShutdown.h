@@ -100,7 +100,7 @@ private:
 		 */
 		
 		ofLogNotice("ofKillApp()")<<"killing "+ appname;
-		ofSystem("ps aux | grep "+appname+" | awk {'print $2'} | xargs KILL -15");
+		ofSystem("ps aux | grep "+appname+" | awk {'print $2'} | xargs KILL -9");
 		
 	}
 };
