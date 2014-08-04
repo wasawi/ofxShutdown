@@ -69,10 +69,11 @@ void ofxShutdown::shutDown(){
 	if (isAdmin) {
 		// if user is admin
 		ofSystem("shutdown "+shutdownParams);
+		ofLogNotice(" ofxShutdown::shutDown()")<<"shutdown";
 	}else{
 		// if user is not admin, set admin passw.
 		ofSystem("echo "+password+" | sudo -S shutdown "+ shutdownParams+" &");
-		ofLogError("shutDown()")<<" sudo -S shutdown "+ shutdownParams+" &";
+		ofLogNotice(" ofxShutdown::shutDown()")<<"sudo -S shutdown "+ shutdownParams+" &";
 	}
 	
 	if (bexitAfterCommand){
