@@ -76,6 +76,6 @@ void ofxShutdown::shutDown(){
 	}
 	
 	if (bexitAfterCommand){
-		ofExit();
+		ofKillApp("iWall");
 	}
 }
