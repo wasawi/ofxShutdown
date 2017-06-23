@@ -66,15 +66,21 @@ void ofxShutdown::draw(ofEventArgs &e){
 //--------------------------------------------------------------
 void ofxShutdown::shutDown(){
 
+
 	if (isAdmin) {
 		// if user is admin
-		ofSystem("shutdown "+shutdownParams);
+		ofSystem("shutdown "+ shutdownParams);
 	}else{
+#ifdef TARGET_OSX
 		// if user is not admin, set admin passw.
 		ofSystem("echo "+password+" &| sudo -S shutdown "+ shutdownParams);
 		ofLogError("shutDown()")<<" sudo -S shutdown "+ shutdownParams;
+#endif
+#ifdef TARGET_WIN32
+		//TODO
+		ofSystem("shutdown " + shutdownParams);
+#endif
 	}
-	
 	if (bexitAfterCommand){
 		ofExit();
 	}
